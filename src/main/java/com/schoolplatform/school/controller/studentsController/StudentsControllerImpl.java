@@ -1,7 +1,6 @@
 package com.schoolplatform.school.controller.studentsController;
 
 import com.schoolplatform.school.entity.student.Student;
-import com.schoolplatform.school.entity.student.StudentImpl;
 import com.schoolplatform.school.service.studentService.StudentService;
 import com.schoolplatform.school.studentsGenerator.StudentsGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,19 +19,19 @@ public class StudentsControllerImpl implements StudentsController {
 
 
     @GetMapping("/allStudents")
-    public List<StudentImpl> showAllStudents() {
-        List<StudentImpl> studentRepositoryAll = studentService.findAll();
+    public List<Student> showAllStudents() {
+        List<Student> studentRepositoryAll = studentService.findAll();
         return studentRepositoryAll;
     }
 
     @PutMapping("/updateStudent")
-    public StudentImpl updateStudent(@RequestBody StudentImpl student) {
+    public Student updateStudent(@RequestBody Student student) {
         studentService.save(student);
         return student;
     }
 
     @PostMapping("/addStudent")
-    public StudentImpl addNewStudent(@RequestBody StudentImpl student) {
+    public Student addNewStudent(@RequestBody Student student) {
         studentService.save(student);
         return student;
     }
@@ -43,10 +42,8 @@ public class StudentsControllerImpl implements StudentsController {
     }
 
     @PostMapping("/generate/{number}")
-    public List<StudentImpl> generateAndSaveStudentsByNumber(@PathVariable int number) {
-        List<StudentImpl> students = studentsGenerator.generateStudents(number);
-        studentService.saveAll(students);
-        return students;
+    public List<Student> generateAndSaveStudentsByNumber(@PathVariable int number) {
+        return studentService.generateAndSaveStudentsByNumber(number);
     }
 
 

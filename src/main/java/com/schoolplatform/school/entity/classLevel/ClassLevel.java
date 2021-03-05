@@ -1,4 +1,26 @@
 package com.schoolplatform.school.entity.classLevel;
 
-public interface ClassLevel {
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "class_level")
+@Getter
+@Setter
+@RequiredArgsConstructor
+public class ClassLevel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "class_level_id")
+    private int id;
+
+    @Column(name = "class_level_name")
+    private String name;
+
+
+
 }

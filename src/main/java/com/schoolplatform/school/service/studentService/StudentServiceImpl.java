@@ -2,10 +2,9 @@ package com.schoolplatform.school.service.studentService;
 
 import com.schoolplatform.school.dao.StudentsRepository;
 import com.schoolplatform.school.entity.student.Student;
-import com.schoolplatform.school.entity.student.StudentImpl;
+import com.schoolplatform.school.studentsGenerator.StudentsGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -14,20 +13,22 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     public StudentsRepository studentsRepository;
+    @Autowired
+    public StudentsGenerator studentsGenerator;
 
 
     @Override
-    public List<StudentImpl> findAll() {
+    public List<Student> findAll() {
         return studentsRepository.findAll();
     }
 
     @Override
-    public List<StudentImpl> getStudentById(int id) {
+    public List<Student> getStudentById(int id) {
         return studentsRepository.getStudentById(id);
     }
 
     @Override
-    public StudentImpl save(StudentImpl student) {
+    public Student save(Student student) {
         studentsRepository.save(student);
         return student;
     }
@@ -40,8 +41,15 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentImpl> saveAll(List<StudentImpl> students) {
+    public List<Student> saveAll(List<Student> students) {
         return studentsRepository.saveAll(students);
+    }
+
+    @Override
+    public List<Student> generateAndSaveStudentsByNumber(int number) {
+        List<Student> students = studentsGenerator.generateStudents(number);
+        studentsRepository.saveAll(students);
+        return students;
     }
 
 }

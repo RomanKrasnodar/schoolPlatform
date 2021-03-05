@@ -1,7 +1,6 @@
 package com.schoolplatform.school.studentsGenerator;
 
 import com.schoolplatform.school.entity.student.Student;
-import com.schoolplatform.school.entity.student.StudentImpl;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
@@ -128,8 +127,8 @@ public class StudentsGenerator {
     }
 
 
-    public List<StudentImpl> generateStudents(int quantityOfStudents) {
-        ArrayList<StudentImpl> students = new ArrayList<>();
+    public List<Student> generateStudents(int quantityOfStudents) {
+        ArrayList<Student> students = new ArrayList<>();
         for (int i = 0; i < quantityOfStudents; i++) {
             students.add(this.generateOneStudent());
         }
@@ -137,10 +136,10 @@ public class StudentsGenerator {
     }
 
 
-    public StudentImpl generateOneStudent() {
+    public Student generateOneStudent() {
         String fullName = generateFullName();
         LocalDate birthDate = generateBirthDate();
-        StudentImpl student = new StudentImpl(fullName, birthDate, getClassLevelFromAge(birthDate));
+        Student student = new Student(fullName, birthDate, getClassLevelFromAge(birthDate));
         return student;
     }
 

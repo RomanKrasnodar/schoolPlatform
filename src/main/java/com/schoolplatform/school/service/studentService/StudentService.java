@@ -1,14 +1,15 @@
 package com.schoolplatform.school.service.studentService;
 
 import com.schoolplatform.school.entity.student.Student;
-import com.schoolplatform.school.entity.student.StudentImpl;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
 public interface StudentService {
-    public List<StudentImpl> findAll();
-    public List<StudentImpl> getStudentById(int id);
-    public StudentImpl save(StudentImpl student);
+    public List<Student> findAll();
+    public List<Student> getStudentById(int id);
+    public Student save(Student student);
     public String deleteById(int id);
-    public List<StudentImpl> saveAll(List<StudentImpl> students);
+    public List<Student> saveAll(List<Student> students);
+    public List<Student> generateAndSaveStudentsByNumber(int number);
 }

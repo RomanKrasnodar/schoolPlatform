@@ -5,14 +5,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "class_id")
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class ClassIdImpl implements ClassId{
+public class UniqueClass{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
