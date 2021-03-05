@@ -10,4 +10,5 @@ public interface StudentService {
     public List<StudentImpl> getStudentById(int id);
     public StudentImpl save(StudentImpl student);
     public String deleteById(int id);
+    public List<StudentImpl> saveAll(List<StudentImpl> students);
 }

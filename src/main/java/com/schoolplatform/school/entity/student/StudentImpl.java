@@ -1,5 +1,8 @@
 package com.schoolplatform.school.entity.student;
 
+import com.schoolplatform.school.entity.classId.ClassIdImpl;
+import com.schoolplatform.school.entity.classLevel.ClassLevel;
+import com.schoolplatform.school.entity.classLevel.ClassLevelImpl;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,8 +30,8 @@ public class StudentImpl implements Student {
     @Column(name = "class_level")
     private int classLevelName;
 
-    @Column(name = "class_id")
-    private String classIdName;
+    @Column(name = "class_id_Id")
+    private int classIdId;
 
     public StudentImpl() {
     }

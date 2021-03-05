@@ -28,12 +28,20 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentImpl save(StudentImpl student) {
-        return null;
+        studentsRepository.save(student);
+        return student;
     }
+
 
     @Override
     public String deleteById(int id) {
         studentsRepository.deleteById(id);
         return "Student with ID = " + id + " was deleted";
     }
+
+    @Override
+    public List<StudentImpl> saveAll(List<StudentImpl> students) {
+        return studentsRepository.saveAll(students);
+    }
+
 }
