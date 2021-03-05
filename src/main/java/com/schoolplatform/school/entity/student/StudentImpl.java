@@ -3,8 +3,10 @@ package com.schoolplatform.school.entity.student;
 import com.schoolplatform.school.entity.classId.ClassIdImpl;
 import com.schoolplatform.school.entity.classLevel.ClassLevel;
 import com.schoolplatform.school.entity.classLevel.ClassLevelImpl;
+import com.schoolplatform.school.studentsGenerator.StudentsGenerator;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,6 +17,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class StudentImpl implements Student {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +30,8 @@ public class StudentImpl implements Student {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @Column(name = "class_level")
-    private int classLevelName;
+    @Column(name = "class_level_id")
+    private int classLevelId;
 
     @Column(name = "class_id_Id")
     private int classIdId;
@@ -41,10 +44,17 @@ public class StudentImpl implements Student {
         this.name = name;
         this.birthDate = birthDate;
     }
-
+//for manual add
     public StudentImpl(String name,LocalDate birthDate) {
         this.name = name;
         this.birthDate = birthDate;
-//        ClassLevel.getClassLVLFromAge(this);
+        this.classLevelId = StudentsGenerator.getClassLevelFromAge(birthDate);
+    }
+//    for generator
+
+    public StudentImpl(String name, LocalDate birthDate, int classLevelId) {
+        this.name = name;
+        this.birthDate = birthDate;
+        this.classLevelId = classLevelId;
     }
 }
