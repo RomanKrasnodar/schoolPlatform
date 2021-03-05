@@ -11,5 +11,6 @@ public interface StudentsRepository extends JpaRepository<StudentImpl,Integer> {
     public List<StudentImpl> findAll();
     public List<StudentImpl> getStudentById(int id);
     public StudentImpl save(Student student);
+    public StudentImpl deleteById(int id);
 
 }

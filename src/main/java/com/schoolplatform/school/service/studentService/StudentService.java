@@ -8,5 +8,6 @@ import java.util.List;
 public interface StudentService {
     public List<StudentImpl> findAll();
     public List<StudentImpl> getStudentById(int id);
-    public Student save(Student student);
+    public StudentImpl save(StudentImpl student);
+    public String deleteById(int id);
 }

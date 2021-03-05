@@ -33,6 +33,11 @@ public class StudentsControllerImpl implements StudentsController{
         return student;
     }
 
+    @DeleteMapping("/deleteStudent/{id}")
+    public String deleteById(@PathVariable int id){
+        return studentService.deleteById(id);
+    }
+
 
 
 }

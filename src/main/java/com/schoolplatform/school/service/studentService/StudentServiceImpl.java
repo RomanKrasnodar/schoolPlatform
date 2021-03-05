@@ -5,6 +5,7 @@ import com.schoolplatform.school.entity.student.Student;
 import com.schoolplatform.school.entity.student.StudentImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -26,7 +27,13 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student save(Student student) {
-        return studentsRepository.save(student);
+    public StudentImpl save(StudentImpl student) {
+        return null;
+    }
+
+    @Override
+    public String deleteById(int id) {
+        studentsRepository.deleteById(id);
+        return "Student with ID = " + id + " was deleted";
     }
 }
