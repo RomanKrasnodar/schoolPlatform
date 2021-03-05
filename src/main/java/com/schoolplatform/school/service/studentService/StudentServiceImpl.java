@@ -2,6 +2,7 @@ package com.schoolplatform.school.service.studentService;
 
 import com.schoolplatform.school.dao.StudentsRepository;
 import com.schoolplatform.school.entity.student.Student;
+import com.schoolplatform.school.entity.student.StudentImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +16,12 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public List<Student> findAll() {
+    public List<StudentImpl> findAll() {
         return studentsRepository.findAll();
     }
 
     @Override
-    public List<Student> getStudentById(int id) {
+    public List<StudentImpl> getStudentById(int id) {
         return studentsRepository.getStudentById(id);
     }
 

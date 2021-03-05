@@ -1,11 +1,12 @@
 package com.schoolplatform.school.service.studentService;
 
 import com.schoolplatform.school.entity.student.Student;
+import com.schoolplatform.school.entity.student.StudentImpl;
 
 import java.util.List;
 
 public interface StudentService {
-    public List<Student> findAll();
-    public List<Student> getStudentById(int id);
+    public List<StudentImpl> findAll();
+    public List<StudentImpl> getStudentById(int id);
     public Student save(Student student);
 }
