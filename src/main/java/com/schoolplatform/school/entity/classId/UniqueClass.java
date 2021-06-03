@@ -1,33 +1,38 @@
 package com.schoolplatform.school.entity.classId;
 
-import lombok.Getter;
+import com.schoolplatform.school.entity.classLevel.Parallel;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "class_id")
-@Getter
-@Setter
+@Table(name = "unique_classes")
+@Data
 @RequiredArgsConstructor
-public class UniqueClass{
+public class UniqueClass {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "class_id_id")
+    @Column(name = "unique_class_id")
     private int id;
 
-    @Column(name = "class_id_name")
+    @Column(name = "unique_class_name")
     private String name;
 
-    @Column(name = "classroom_teacher")
-    private String classroomTeacher;
+    @Column(name = "classroom_teacher_id")
+    private String classroomTeacherId;
 
-    @Column(name = "classroom_number")
+    @Column(name = "home_classroom_id")
     private int classroomNumber;
 
-    @Column(name = "schedule")
-    private String schedule;
+    @ManyToOne
+    @JoinColumn(name = "parallel_id", referencedColumnName = "parallel_id")
+    private Parallel parallel;
+
+
+    public UniqueClass(String name) {
+        this.name = name;
+    }
 
 }

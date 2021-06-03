@@ -1,4 +1,4 @@
-package com.schoolplatform.school.studentsGenerator;
+package com.schoolplatform.school.generator;
 
 import com.schoolplatform.school.entity.student.Student;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -139,7 +138,7 @@ public class StudentsGenerator {
     public Student generateOneStudent() {
         String fullName = generateFullName();
         LocalDate birthDate = generateBirthDate();
-        Student student = new Student(fullName, birthDate, getClassLevelFromAge(birthDate));
+        Student student = new Student(fullName, birthDate);
         return student;
     }
 
@@ -149,20 +148,5 @@ public class StudentsGenerator {
         long randomTimeInMs = (long) (Math.random() * ((maxDate - minDate) + 1)) + minDate;
         return new Date(randomTimeInMs).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
-
-
-    public static int getClassLevelFromAge(LocalDate localDate) {
-        int age = getAgeFromDate(localDate);
-        if (age > 6 && age < 18) {
-            return age - 6;
-        } else return -1;
-    }
-
-    public static int getAgeFromDate(LocalDate birthDate) {
-        LocalDate now = LocalDate.now(ZoneId.systemDefault());
-        int years = (int) ChronoUnit.YEARS.between(birthDate, now);
-        return years;
-    }
-
 
 }

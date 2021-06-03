@@ -2,7 +2,8 @@ package com.schoolplatform.school.service.studentService;
 
 import com.schoolplatform.school.dao.StudentsRepository;
 import com.schoolplatform.school.entity.student.Student;
-import com.schoolplatform.school.studentsGenerator.StudentsGenerator;
+import com.schoolplatform.school.generator.StudentsGenerator;
+import com.schoolplatform.school.service.classLevelService.ClassLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,11 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
-    public StudentsRepository studentsRepository;
+    private StudentsRepository studentsRepository;
     @Autowired
-    public StudentsGenerator studentsGenerator;
+    private StudentsGenerator studentsGenerator;
+    @Autowired
+    private ClassLevelService classLevelService;
 
 
     @Override

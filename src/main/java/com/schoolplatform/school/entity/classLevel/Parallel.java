@@ -1,26 +1,27 @@
 package com.schoolplatform.school.entity.classLevel;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "class_level")
-@Getter
-@Setter
+@Table(name = "parallels")
+@Data
 @RequiredArgsConstructor
-public class ClassLevel {
+public class Parallel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "class_level_id")
+    @Column(name = "parallel_id")
     private int id;
 
-    @Column(name = "class_level_name")
+    @Column(name = "parallel_name")
     private String name;
 
+    @Column(name = "teach_plan_id")
+    private int teachPlan;
 
 
 }

@@ -1,11 +1,15 @@
 package com.schoolplatform.school.entity.student;
 
-import com.schoolplatform.school.studentsGenerator.StudentsGenerator;
+import com.schoolplatform.school.entity.classId.UniqueClass;
+import com.schoolplatform.school.entity.classLevel.Parallel;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 
 
 @Entity
@@ -17,40 +21,38 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "student_id")
+    @Column(name = "id")
     private int id;
 
-    @Column(name = "full_name")
+    @Column(name = "name")
     private String name;
 
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-    @Column(name = "class_level_id")
-    private int classLevelId;
+    @ManyToOne
+    @JoinColumn(name = "unique_class_id", referencedColumnName = "unique_class_id")
+    private UniqueClass uniqueClass;
 
-    @Column(name = "class_id_Id")
-    private int classIdId;
+    @ManyToOne
+    @JoinColumn(name = "parallel_id", referencedColumnName = "parallel_id")
+    private Parallel parallel;
 
     public Student() {
     }
 
-    public Student(int id, String name, LocalDate birthDate) {
-        this.id = id;
-        this.name = name;
-        this.birthDate = birthDate;
-    }
-//for manual add
     public Student(String name, LocalDate birthDate) {
         this.name = name;
         this.birthDate = birthDate;
-        this.classLevelId = StudentsGenerator.getClassLevelFromAge(birthDate);
+//        this.classLevel = getClassLevelFromAge(this);
     }
-//    for generator
 
-    public Student(String name, LocalDate birthDate, int classLevelId) {
-        this.name = name;
-        this.birthDate = birthDate;
-        this.classLevelId = classLevelId;
+    public int getClassLevelFromAge(Student student) {
+        LocalDate now = LocalDate.now(ZoneId.systemDefault());
+        int age = (int) ChronoUnit.YEARS.between(student.getBirthDate(), now);
+        if (age > 6 && age < 18) {
+            return age - 6;
+        } else return 0;
     }
+
 }
